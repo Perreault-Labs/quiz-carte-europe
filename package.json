@@ -1,0 +1,30 @@
+{
+  "name": "quiz-carte-europe",
+  "version": "1.0.0",
+  "description": "Quiz-carte-Europe sert à évaluer les compétences en géographie d'un individu sur les pays et les capitales d'Europe de manière simple et agréable.",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Perreault-Labs/quiz-carte-europe.git"
+  },
+  "keywords": [
+    "quiz",
+    "maps",
+    "node"
+  ],
+  "author": "Elliot Perreault",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Perreault-Labs/quiz-carte-europe/issues"
+  },
+  "homepage": "https://github.com/Perreault-Labs/quiz-carte-europe#readme",
+  "dependencies": {
+    "delete": "^1.1.0",
+    "express": "^4.21.2",
+    "fastify": "^5.2.1"
+  }
+}
