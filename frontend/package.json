@@ -24,6 +24,7 @@
   "homepage": "https://github.com/Perreault-Labs/quiz-carte-europe#readme",
   "dependencies": {
     "delete": "^1.1.0",
+    "ejs": "^3.1.10",
     "express": "^4.21.2",
     "fastify": "^5.2.1",
     "prisma": "^6.4.1"
