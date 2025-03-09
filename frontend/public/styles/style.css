@@ -1,6 +1,6 @@
 :root {
-  --beige: red;
-  --blue: blue;
+  --beige: beige;
+  --water: blue;
 }
 
 * {
@@ -10,7 +10,7 @@
 }
 
 body {
-  background-color: var(--blue);
+  background-color: var(--water);
   width: 100%;
   height: 100svh;
   display: flex;
