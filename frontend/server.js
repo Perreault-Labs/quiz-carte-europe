@@ -4,7 +4,7 @@ import appRoutes from "./routes/appRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 
 const app = express();
-const port = 3000;
+const port = 8734;
 
 app.use(express.static("public"));
 
