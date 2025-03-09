@@ -4,8 +4,15 @@
 
   --image-water: url("/images/waterAquaTexture.svg");
 
-  --default-text-color: white;
+  --default-text-color: black;
   --contrast-text-color: blue;
+  --link-text-color: green;
+
+  --small-text-size: clamp(8px, 2vw, 16px);
+  --medium-text-size: clamp(16px, 4vw, 32px);
+  --big-text-size: clamp(32px, 8vw, 128px);
+
+  --default-font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 
   --small-padding: 8px;
   --medium-padding: 16px;
@@ -20,6 +27,7 @@
 }
 
 body {
+  font-family: var(--default-font-family);
   background-color: var(--color-water);
   background-image: var(--image-water);
   width: 100%;
@@ -32,11 +40,13 @@ body {
 nav {
   background-color: var(--color-beige);
   padding: var(--medium-padding);
+  text-align: center;
 }
 
 footer {
   padding: var(--medium-padding);
   background-color: var(--color-beige);
+  text-align: center;
 }
 
 form {
@@ -45,4 +55,15 @@ form {
 
 h1 {
   color: var(--default-text-color);
+  font-size: var(--big-text-size);
+  font-family: var(--default-font-family);
+}
+
+a {
+  font-size: var(--medium-text-size);
+  color: var(--link-text-color);
+  cursor: pointer;
+}
+a:hover {
+  opacity: 80%;
 }
