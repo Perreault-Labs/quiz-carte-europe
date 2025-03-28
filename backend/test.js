@@ -6,6 +6,8 @@ const prisma = new PrismaClient()
 async function main() {
     console.log("Connected to Prisma")
     console.log("hello")
+
+    
 }
 
 main().catch(e => {
