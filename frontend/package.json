@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/Perreault-Labs/quiz-carte-europe#readme",
   "dependencies": {
+    "axios": "^1.8.4",
     "delete": "^1.1.0",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
