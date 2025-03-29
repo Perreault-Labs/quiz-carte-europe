@@ -70,7 +70,7 @@ footer {
   -webkit-mask: var(--wave-mask-top);
 }
 
-form {
+form, main {
   -webkit-mask: var(--wave-mask);
   background-color: var(--color-beige);
   min-height: fit-content;
@@ -79,6 +79,7 @@ form {
   padding: var(--enormous-size) var(--medium-size);
   gap: var(--medium-size);
 }
+
 
 h1 {
   color: var(--default-text-color);
@@ -117,12 +118,50 @@ input[type="submit"] {
   cursor: pointer;
 }
 
+label.checkbox {
+  display: inline-flex;
+
+  font-size: var(--medium-text-size);
+
+  align-items: center; 
+  gap: var(--small-size);
+  cursor: pointer; 
+}
+
+input[type="checkbox"] {
+  width: var(--small-text-size);
+  height: var(--small-text-size);
+}
+
+ul {
+  font-family: var(--default-font-family);
+  font-size: var(--medium-text-size);
+}
 
 
 .center {
   display: grid;
   place-items: center;
 }
+
+.self-left {
+  justify-self: left;
+}
+
 .full-width {
   width: 100%;
 }
+
+.half-width {
+  width: 50%;
+}
+
+.three-quarter-width {
+  width: 75%;
+}
+
+.no-mask {
+  padding: var(--medium-size);
+  -webkit-mask: none;
+}
+
