@@ -21,6 +21,10 @@ app.use("/", defaultRoutes);
 app.use("/", appRoutes);
 app.use("/", adminRoutes);
 
+app.get("*", (req, res) => {
+  res.redirect("/")
+})
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
