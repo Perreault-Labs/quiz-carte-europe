@@ -1,8 +1,12 @@
 import express from "express";
 const router = express.Router();
 
-router.get("/app", (req, res) => {
-  res.render("app/quiz.ejs");
+router.get("/app/countries", (req, res) => {
+  res.render("app/quizCountries.ejs");
+});
+
+router.get("/app/capitals", (req, res) => {
+  res.render("app/quizCapitals.ejs");
 });
 
 router.get("/app/info", (req, res) => {

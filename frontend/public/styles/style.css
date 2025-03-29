@@ -237,7 +237,62 @@ ul {
   margin: var(--small-size);
 }
 
-tbody.editable > tr td:nth-child(2) {
+td.full {
+  background-color: 	#98FB98!important;
+}
+
+tbody.editable > tr td:nth-child(2), tbody.editable > tr td:nth-child(4){
   text-align: center;
-  background-color: red!important;
+  background-color: #ff2c2c;
+}
+
+/* --- Modal Styles --- */
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: hidden; /* Disable scroll on body when modal is open */
+  background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+  /* Use flexbox to center the content */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modal Content (The Image) */
+.modal-content {
+  display: block; /* Make it a block element */
+  /* margin: auto; Removed as flexbox handles centering */
+  max-width: 90%; /* Max width relative to viewport */
+  max-height: 90vh; /* Max height relative to viewport height */
+  width: auto; /* Maintain aspect ratio */
+  height: auto; /* Maintain aspect ratio */
+   /* Base dimensions - these will be overridden by max-width/max-height if needed */
+   /* width: 2200px; /* Not recommended - use max-width */
+   /* height: 1700px; /* Not recommended - use max-height */
+   object-fit: contain; /* Scale down while maintaining aspect ratio */
+}
+
+/* The Close Button */
+.modal-close-button {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1; /* White color for visibility */
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+  line-height: 1; /* Ensure consistent vertical alignment */
+}
+
+.modal-close-button:hover,
+.modal-close-button:focus {
+  color: #bbb; /* Grey on hover */
+  text-decoration: none;
 }
