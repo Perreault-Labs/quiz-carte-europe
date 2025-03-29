@@ -14,9 +14,10 @@
     </main>
   
     <footer class="center">
-        <form id="validationFrom" class="center no-mask" action="/app/quiz" style="width: 70%;">
+        <form id="validationForm" class="center no-mask" method="get" action="/app" style="width: 70%;">
+            <div id="hiddenParamsContainer"></div>
             <label class="checkbox self-left">
-                <input type="checkbox" name="validation">
+                <input type="checkbox" name="validation" required>
                 J'ai compris les informations
              </label>
             <input class="full-width" type="submit" value="Prendre le test">
@@ -25,3 +26,26 @@
   </body>
   
   </html>
+
+  <script>
+     document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('validationForm');
+      const hiddenParamsContainer = document.getElementById('hiddenParamsContainer');
+
+      if (form && hiddenParamsContainer) {
+        const urlParams = new URLSearchParams(window.location.search);
+
+        urlParams.forEach((value, key) => {
+
+          const hiddenInput = document.createElement('input');
+          hiddenInput.type = 'hidden';
+          hiddenInput.name = key;
+          hiddenInput.value = value;
+          hiddenParamsContainer.appendChild(hiddenInput);
+        });
+
+      } else {
+         console.error("Form or hidden params container not found.");
+      }
+    });
+  </script>
