@@ -296,3 +296,112 @@ tbody.editable > tr td:nth-child(2), tbody.editable > tr td:nth-child(4){
   color: #bbb; /* Grey on hover */
   text-decoration: none;
 }
+
+.admin-dashboard {
+  display: flex; /* Use flexbox for overall layout */
+  flex-direction: column; /* Stack grid and actions vertically */
+  align-items: center; /* Center items horizontally */
+  padding: var(--medium-size);
+  gap: var(--big-size); /* Space between grid and buttons */
+  width: 100%;
+}
+
+.user-grid {
+  display: grid;
+  /* Responsive grid: columns are at least 200px wide,
+     fitting as many as possible, then distributing extra space */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--medium-size); /* Space between cards */
+  width: 90%; /* Limit the grid width */
+  max-width: 1200px; /* Max width for very large screens */
+  margin: 0 auto; /* Center the grid container itself if needed */
+}
+
+.user-card {
+  background-color: var(--color-beige); /* Use theme color */
+  padding: var(--medium-size);
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Softer shadow */
+  border: 1px solid #ddd;
+  text-align: center; /* Center text within the card */
+  display: flex; /* Use flex for content alignment */
+  flex-direction: column;
+  justify-content: space-between; /* Push content apart vertically if needed */
+  min-height: 120px; /* Ensure cards have some minimum height */
+}
+
+.user-name {
+  font-size: var(--medium-text-size); /* Adjust size as needed */
+  font-weight: bold;
+  color: var(--default-text-color);
+  margin-bottom: var(--small-size);
+}
+
+.score-line {
+  font-size: var(--small-text-size); /* Adjust size */
+  color: #333; /* Slightly darker text for scores */
+  margin-bottom: var(--small-size);
+}
+
+.score-line:last-child {
+  margin-bottom: 0;
+}
+
+.score-value {
+  font-weight: bold;
+  color: var(--color-black); /* Make score numbers stand out */
+}
+
+.global-actions {
+  display: flex;
+  flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+  justify-content: center; /* Center buttons horizontally */
+  gap: var(--medium-size); /* Space between buttons */
+  width: 100%;
+  padding: var(--medium-size) 0; /* Add some padding */
+}
+
+.action-button {
+  /* Style buttons similar to submit inputs or create new style */
+  padding: var(--small-size) var(--medium-size);
+  font-size: clamp(14px, 3vw, 20px); /* Responsive font size */
+  font-family: var(--default-font-family);
+  background-color: var(--color-black);
+  color: var(--color-beige);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.action-button:hover {
+  background-color: #333; /* Darken on hover */
+  box-shadow: var(--box-shadow); /* Use existing hover shadow */
+}
+
+/* Specific style for potentially destructive actions */
+.action-button.btn-danger {
+  background-color: #dc3545; /* Red color */
+  color: white;
+}
+
+.action-button.btn-danger:hover {
+  background-color: #c82333; /* Darker red on hover */
+}
+
+/* --- Ensure Footer stays at bottom if content is short --- */
+body {
+  min-height: 100dvh; /* Make body at least full viewport height */
+  /* display: flex; flex-direction: column; is already set */
+  justify-content: space-between; /* Pushes footer down */
+}
+
+main.admin-dashboard {
+   flex-grow: 1; /* Allows main content to take up available space */
+}
+
+/* --- Remove default styles from the old section if it exists --- */
+section.score {
+    display: none; /* Hide the old section if it's still in the file */
+}
