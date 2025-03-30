@@ -1,5 +1,4 @@
 import express from "express";
-import axios from "axios"
 import defaultRoutes from "./routes/defaultRoutes.js";
 import appRoutes from "./routes/appRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
@@ -20,6 +19,9 @@ app.use(express.static("public"));
 app.use("/", defaultRoutes);
 app.use("/", appRoutes);
 app.use("/", adminRoutes);
+
+app.use(express.urlencoded({ extended: true }));
+
 
 app.get("*", (req, res) => {
   res.redirect("/")

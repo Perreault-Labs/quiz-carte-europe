@@ -6,7 +6,7 @@
     </nav>
     
     <main class="center">
-        <table id="countriesTable">
+        <table id="capitalsTable">
             <thead>
                 <tr>
                     <th>Pays d'Europe</th>
@@ -122,7 +122,7 @@
                 return alert("Il te reste " + (10 - document.querySelectorAll("td.full").length) + " pays à identifier")
             }
             let params = new URLSearchParams(window.location.search)
-            params.append("countries", JSON.stringify(extractTableDataToJson("countriesTable")))
+            params.append("capitals", JSON.stringify(extractTableDataToJson("capitalsTable")))
 
             window.location.href = "/app/finish/" + '?' + params.toString();
         }
