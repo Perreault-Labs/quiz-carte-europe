@@ -19,16 +19,14 @@ model Admin {
 model Map {
   id String @unique @default(uuid())
 
-  imgSrc String
-
   association Json
 }
 
 model User {
   id String @unique @default(uuid())
 
-  score_countries Int
-  score_capitals  Int
+  score_countries Int?
+  score_capitals  Int?
 
   username String
   group    Int
