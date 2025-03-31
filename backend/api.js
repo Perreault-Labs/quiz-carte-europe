@@ -7,6 +7,7 @@ import jwt from "jsonwebtoken"
 const prisma = new PrismaClient();
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 
 const JWT_SECRET = process.env.JWT_SECRET; 
@@ -35,20 +36,20 @@ async function authenticateToken(req, res, next) {
 
 // Admin Login
 app.post('/admin/login', async (req, res) => {
+  console.log(req.body)
   const { username, password } = req.body;
 
   const admin = await prisma.admin.findUnique({ where: { username } });
   if (!admin) return res.status(401).send('Incorrect credentials.');
+  console.log(admin)
 
-
-  const validPassword = await bcrypt.compare(password, admin.password)
+  const validPassword = password === admin.password ? true : false
   if (!validPassword) return res.status(401).send('Incorrect credentials.');
 
 
   const accessToken = jwt.sign({ username: admin.username, id: admin.id }, JWT_SECRET);
 
-
-  res.json({ accessToken });
+  res.json(accessToken)
 });
 
 

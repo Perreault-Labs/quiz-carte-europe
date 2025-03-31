@@ -48,7 +48,17 @@ const capitals = {
   
   const prisma = new PrismaClient();
 
-  // console.log(await prisma.user.deleteMany())
+  // const admin = await prisma.admin.findUnique({
+  //   where: {username: "kim"}
+  // });
+  // console.log(admin)
+
+  // console.log(await prisma.admin.create({
+  //   data: {
+  //     username: "kim",
+  //     password: "EuropeQuiz41*"
+  //   }
+  // }))
 
   //Country id: 585aae34-95df-4385-b572-5403df10366c
   //Capitals id: ce5cc595-141d-43b6-aff0-1a8e5bc58bd3
