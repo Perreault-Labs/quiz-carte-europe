@@ -24,7 +24,7 @@ router.get("/app/finish", (req, res) => {
 });
 
 router.post("/app/finish", async (req, res) => {
-  console.log("Received data:", req.query);
+  // console.log("Received data:", req.query);
 
   const { name, group, validation, countries: countriesJson, capitals: capitalsJson } = req.query;
 
@@ -37,17 +37,9 @@ router.post("/app/finish", async (req, res) => {
 
   try {
     userAnswersCountries =  Object.fromEntries(
-      Object.entries(JSON.parse(countriesJson)).map(([key, value]) => [
-        key.toUpperCase(),
-        value.toUpperCase()
-      ])
+      Object.entries(JSON.parse(countriesJson)).map(([key, value]) => [key, value.toLowerCase()])
     );
-    userAnswersCapitals = Object.fromEntries(
-      Object.entries(JSON.parse(capitalsJson)).map(([key, value]) => [
-        key.toUpperCase(),
-        value.toUpperCase()
-      ])
-    );
+    userAnswersCapitals = JSON.parse(capitalsJson)
   } catch (parseError) {
     console.error("Error parsing JSON from request:", parseError);
     return res.status(400).json({ error: 'Invalid JSON format for countries or capitals.' });
@@ -62,24 +54,22 @@ router.post("/app/finish", async (req, res) => {
     return res.status(400).json({ error: 'Invalid Int format for group' });
   }
 
-  const countriesMapIdToValidate = '7b2a5d83-c7d3-40b0-a9dc-b3b223ec268a';
-  const capitalsMapIdToValidate = '89468acb-f108-4b06-9b72-7ba0c6f400ab';
+  const countriesMapIdToValidate = '585aae34-95df-4385-b572-5403df10366c';
+  const capitalsMapIdToValidate = 'ce5cc595-141d-43b6-aff0-1a8e5bc58bd3';
 
   try {
-    console.log(`Fetching map data for ID: ${countriesMapIdToValidate} and ID: ${capitalsMapIdToValidate}`);
     const mapCountries = await axios.get(`${API_BASE_URL}/map/${countriesMapIdToValidate}`);
-    const correctCountries = mapCountries.data;
+    const correctCountries = mapCountries.data.association;
 
     const mapCapitals = await axios.get(`${API_BASE_URL}/map/${capitalsMapIdToValidate}`);
 
-    const correctCapitals = mapCapitals.data
+    const correctCapitals = mapCapitals.data.association
 
     let score_countries = 0;
     let score_capitals = 0;
 
 
     if (validation === 'on') {
-      console.log("hello")
       for (const country in userAnswersCountries) {
         if (userAnswersCountries.hasOwnProperty(country) && correctCountries.hasOwnProperty(country)) {
           if (userAnswersCountries[country] === correctCountries[country]) {

@@ -1,53 +1,54 @@
 const country = {
-    "Portugal": "F",
-    "Islande": "A",
-    "Belgique": "I",
-    "Allemagne": "L",
-    "Bulgarie": "W",
-    "Royaume-Uni": "E",
-    "Suède": "B",
-    "Lituanie": "O",
-    "Espagne": "G",
-    "Grèce": "X",
-    "Italie": "M",
-    "Finlande": "C",
-    "Ukraine": "Q",
-    "Russie": "V",
-    "Pays-Bas": "J",
-    "République tchèque": "U",
-    "Serbie": "S",
-    "Roumanie": "R",
-    "Danemark": "K",
-    "Autriche": "T",
-    "France": "H",
-    "Croatie": "Y",
-    "Pologne": "N",
-    "Hongrie": "Z"
-  }
-  
-  const capitals = {
-    "Varsovie": 16,
-    "Rome": 12,
-    "Belgrade": 24,
-    "Berne": 11,
-    "Bruxelles": 6,
-    "Vienne": 14,
-    "Oslo": 2,
-    "Prague": 15,
-    "Madrid": 9,
-    "Minsk": 19,
-    "Sarajevo": 13,
-    "Paris": 5,
-    "Helsinki": 4,
-    "Londres": 1
-  }
+  "portugal": "f",
+  "islande": "a",
+  "belgique": "i",
+  "allemagne": "l",
+  "bulgarie": "w",
+  "royaume-uni": "e",
+  "suède": "b",
+  "lituanie": "o",
+  "espagne": "g",
+  "grèce": "x",
+  "italie": "m",
+  "finlande": "c",
+  "ukraine": "q",
+  "russie": "v",
+  "pays-bas": "j",
+  "république tchèque": "u",
+  "serbie": "s",
+  "roumanie": "r",
+  "danemark": "k",
+  "autriche": "t",
+  "france": "h",
+  "croatie": "y",
+  "pologne": "n",
+  "hongrie": "z"
+}
+
+const capitals = {
+  "varsovie": "16",
+  "rome": "12",
+  "belgrade": "24",
+  "berne": "11",
+  "bruxelles": "6",
+  "vienne": "14",
+  "oslo": '2',
+  "prague": "15",
+  "madrid": "9",
+  "minsk": "19",
+  "sarajevo": "13",
+  "paris": "5",
+  "helsinki": "4",
+  "londres": "1"
+}
+
 
   import { PrismaClient } from '@prisma/client';
   
   
   const prisma = new PrismaClient();
 
-  console.log(await prisma.user.findMany())
+  // console.log(await prisma.user.deleteMany())
 
-  //Country id: 7b2a5d83-c7d3-40b0-a9dc-b3b223ec268a
-  //Capitals id: 89468acb-f108-4b06-9b72-7ba0c6f400ab
+  //Country id: 585aae34-95df-4385-b572-5403df10366c
+  //Capitals id: ce5cc595-141d-43b6-aff0-1a8e5bc58bd3
