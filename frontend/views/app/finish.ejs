@@ -36,6 +36,7 @@
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       document.querySelector("main h1").innerHTML = "Félicitation, tu as fini le test !"
+      window.location.href = "/"
     })
     .catch(error => {
       document.querySelector("main h1").innerHTML = "Oups, une erreur est survenu pendant la validation du test"

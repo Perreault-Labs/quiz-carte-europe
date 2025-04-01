@@ -59,6 +59,12 @@ app.get('/users', authenticateToken, async (req, res) => {
   res.json(users);
 });
 
+app.delete('/users', authenticateToken, async (req, res) => {
+  console.log("hello")
+  const users = await prisma.user.deleteMany();
+  res.status(200)
+});
+
 // Get a specific user by ID (protected)
 app.get('/users/:id', authenticateToken, async (req, res) => {
     const { id } = req.params;

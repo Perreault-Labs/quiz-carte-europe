@@ -96,7 +96,6 @@
                 });
             }
 
-            let sampleUserData = [];
 
             fetch("/admin/users" + window.location.search, {
                  method: 'GET',
@@ -110,36 +109,23 @@
 
 
             // --- Add Event Listeners for Global Buttons (Example) ---
-            const blockBtn = document.getElementById('blockResultsBtn');
-            const allowBtn = document.getElementById('allowResultsBtn');
             const clearBtn = document.getElementById('clearResultsBtn');
-
-            if (blockBtn) {
-                blockBtn.addEventListener('click', () => {
-                    console.log('Action: Bloquer Soumissions');
-                    alert('Action: Bloquer les soumissions (logique serveur requise)');
-                    // Add fetch request here to tell the server to block
-                });
-            }
-
-             if (allowBtn) {
-                allowBtn.addEventListener('click', () => {
-                    console.log('Action: Autoriser Soumissions');
-                    alert('Action: Autoriser les soumissions (logique serveur requise)');
-                    // Add fetch request here to tell the server to allow
-                });
-            }
 
              if (clearBtn) {
                 clearBtn.addEventListener('click', () => {
                     if (confirm("Êtes-vous sûr de vouloir effacer TOUS les résultats ? Cette action est irréversible.")) {
                         console.log('Action: Effacer Tous les Résultats');
                         alert('Action: Effacer tous les résultats (logique serveur requise)');
-                        // Add fetch request here to tell the server to clear results
-                        // Optionally, clear the grid visually immediately:
-                        // userGrid.innerHTML = '';
-                        // Or maybe display a message:
-                        // userGrid.innerHTML = '<p>Résultats effacés.</p>';
+                        
+                        fetch("/admin/users" + window.location.search, {
+                            method: 'delete',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                                 })
+                            .catch(error => console.error('Error:', error));
+
+                        displayUsers({})
                     }
                 });
             }

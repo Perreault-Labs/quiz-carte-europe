@@ -25,6 +25,22 @@ router.get("/admin/users", (req, res) => {
   });
 })
 
+router.delete("/admin/users", (req, res) => {
+  console.log("hello")
+  axios.delete("http://localhost:8756/users", {
+    headers: {
+      'Authorization': req.query.id
+    }
+  })
+  .then(response => {
+    res.status(200)
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    res.sendStatus(500)
+  });
+})
+
 router.get("/admin/login", (req, res) => {
   res.render("admin/login.ejs");
 });
