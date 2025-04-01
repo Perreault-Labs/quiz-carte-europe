@@ -27,42 +27,39 @@
     <!-- Add the script tag at the end of the body -->
     <script>
         // Wait for the DOM to be fully loaded before running scripts
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', async () => {
 
             const userGrid = document.querySelector('.user-grid');
 
-            // --- Function to Create a Single User Card Element ---
             function createUserCard(userData) {
-                // Destructure user data with defaults
                 const {
-                    name = 'N/A',
-                    countryScore = 0,
-                    totalCountries = 15, // Default total
-                    capitalScore = 0,
-                    totalCapitals = 15   // Default total
+                    username = 'N/A',
+                    score_countries = 0,
+                    totalCountries = 15, 
+                    score_capitals = 0,
+                    totalCapitals = 10
                 } = userData;
 
-                // Create main card div
                 const card = document.createElement('div');
                 card.classList.add('user-card');
 
-                // Create and add user name
+                // Create and add user username
                 const nameHeading = document.createElement('h3');
                 nameHeading.classList.add('user-name');
-                nameHeading.textContent = name;
+                nameHeading.textContent = username;
                 card.appendChild(nameHeading);
 
                 // Create and add country score line
-                const countryScoreLine = document.createElement('p');
-                countryScoreLine.classList.add('score-line');
-                countryScoreLine.innerHTML = `Pays: <span class="score-value">${countryScore} / ${totalCountries}</span>`; // Use innerHTML to include the span easily
-                card.appendChild(countryScoreLine);
+                const score_countriesLine = document.createElement('p');
+                score_countriesLine.classList.add('score-line');
+                score_countriesLine.innerHTML = `Pays: <span class="score-value">${score_countries} / ${totalCountries}</span>`; // Use innerHTML to include the span easily
+                card.appendChild(score_countriesLine);
 
                 // Create and add capital score line
-                const capitalScoreLine = document.createElement('p');
-                capitalScoreLine.classList.add('score-line');
-                capitalScoreLine.innerHTML = `Capitales: <span class="score-value">${capitalScore} / ${totalCapitals}</span>`;
-                card.appendChild(capitalScoreLine);
+                const score_capitalsLine = document.createElement('p');
+                score_capitalsLine.classList.add('score-line');
+                score_capitalsLine.innerHTML = `Capitales: <span class="score-value">${score_capitals} / ${totalCapitals}</span>`;
+                card.appendChild(score_capitalsLine);
 
                 // Optional: Add user-specific buttons here later if needed
                 // const deleteButton = document.createElement('button');
@@ -99,60 +96,36 @@
                 });
             }
 
-            // --- Example Usage ---
-            // Replace this with how you actually get your user data
-            // (e.g., via an API fetch request in a real application)
-            const sampleUserData = [
-                { name: 'Matt', countryScore: 12, capitalScore: 10 },
-                { name: 'Sophie', countryScore: 15, capitalScore: 14, totalCountries: 15, totalCapitals: 15 }, // Can override defaults
-                { name: 'Jean', countryScore: 8, capitalScore: 5 },
-                { name: 'Alice', countryScore: 10, capitalScore: 11 },
-                { name: 'Pierre', countryScore: 14, capitalScore: 13 },
-                { name: 'Ines', countryScore: 9, capitalScore: 9 },
-                { name: 'Ines', countryScore: 9, capitalScore: 9 },
-                { name: 'Ines', countryScore: 9, capitalScore: 9 },
-                { name: 'Ines', countryScore: 9, capitalScore: 9 },
-                { name: 'Ines', countryScore: 9, capitalScore: 9 },
-                { name: 'Ines', countryScore: 9, capitalScore: 9 },
-                { name: 'Ines', countryScore: 9, capitalScore: 9 },
-                { name: 'Ines', countryScore: 9, capitalScore: 9 },
-            ];
 
-            // Initial display of users when the page loads
-            displayUsers(sampleUserData);
+            fetch("/admin/users" + window.location.search, {
+                 method: 'GET',
+                 headers: {
+                    'Content-Type': 'application/json'
+            }
+            })
+            .then(async (response) =>  displayUsers(await response.json()))
+            .catch(error => console.error('Error:', error));
+    
 
 
             // --- Add Event Listeners for Global Buttons (Example) ---
-            const blockBtn = document.getElementById('blockResultsBtn');
-            const allowBtn = document.getElementById('allowResultsBtn');
             const clearBtn = document.getElementById('clearResultsBtn');
-
-            if (blockBtn) {
-                blockBtn.addEventListener('click', () => {
-                    console.log('Action: Bloquer Soumissions');
-                    alert('Action: Bloquer les soumissions (logique serveur requise)');
-                    // Add fetch request here to tell the server to block
-                });
-            }
-
-             if (allowBtn) {
-                allowBtn.addEventListener('click', () => {
-                    console.log('Action: Autoriser Soumissions');
-                    alert('Action: Autoriser les soumissions (logique serveur requise)');
-                    // Add fetch request here to tell the server to allow
-                });
-            }
 
              if (clearBtn) {
                 clearBtn.addEventListener('click', () => {
                     if (confirm("Êtes-vous sûr de vouloir effacer TOUS les résultats ? Cette action est irréversible.")) {
                         console.log('Action: Effacer Tous les Résultats');
                         alert('Action: Effacer tous les résultats (logique serveur requise)');
-                        // Add fetch request here to tell the server to clear results
-                        // Optionally, clear the grid visually immediately:
-                        // userGrid.innerHTML = '';
-                        // Or maybe display a message:
-                        // userGrid.innerHTML = '<p>Résultats effacés.</p>';
+                        
+                        fetch("/admin/users" + window.location.search, {
+                            method: 'delete',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                                 })
+                            .catch(error => console.error('Error:', error));
+
+                        displayUsers({})
                     }
                 });
             }
