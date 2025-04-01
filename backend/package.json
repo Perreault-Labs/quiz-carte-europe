@@ -5,6 +5,10 @@
     "prisma": "^6.5.0",
     "ts-node": "^10.9.2"
   },
+  "scripts": {
+    "kill": "echo Checking processes on port 8756... for /f \"tokens=5\" %a in ('netstat -ano ^| findstr :8756') do taskkill /PID %a /F",
+    "start": "nodemon api.js"
+  },
   "type": "module",
   "dependencies": {
     "@prisma/client": "^6.5.0",
