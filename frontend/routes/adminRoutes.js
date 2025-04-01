@@ -9,6 +9,22 @@ router.use(express.urlencoded({ extended: true }));
 router.get("/admin", (req, res) => {
   res.render("admin/dashboard.ejs");
 });
+
+router.get("/admin/users", (req, res) => {
+  axios.get("http://localhost:8756/users", {
+    headers: {
+      'Authorization': req.query.id
+    }
+  })
+  .then(response => {
+    res.status(200).json(response.data)
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    res.sendStatus(500)
+  });
+})
+
 router.get("/admin/login", (req, res) => {
   res.render("admin/login.ejs");
 });
